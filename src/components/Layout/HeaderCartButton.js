@@ -1,7 +1,7 @@
-import styles from "./HeaderCartButton.module.css";
 import CartIcon from "../Cart/CartIcon";
+import styles from "./HeaderCartButton.module.css";
 
-function HeaderCartButton(props) {
+export default function HeaderCartButton() {
   return (
     <button className={styles.button}>
       <span className={styles.icon}>
@@ -12,5 +12,3 @@ function HeaderCartButton(props) {
     </button>
   );
 }
-
-export default HeaderCartButton;

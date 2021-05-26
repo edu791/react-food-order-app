@@ -1,12 +1,13 @@
 import { Fragment } from "react";
+
 import HeaderCartButton from "./HeaderCartButton";
 import styles from "./Header.module.css";
 
-function Header(props) {
+export default function Header() {
   return (
     <Fragment>
       <header className={styles.header}>
-        <h1>Meals</h1>
+        <h1>ReactMeals</h1>
         <HeaderCartButton />
       </header>
       <div className={styles["main-image"]}>
@@ -15,5 +16,3 @@ function Header(props) {
     </Fragment>
   );
 }
-
-export default Header;
