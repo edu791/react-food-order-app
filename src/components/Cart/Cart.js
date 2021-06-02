@@ -23,6 +23,13 @@ export default function Cart(props) {
     setIsCheckout(true);
   }
 
+  function submitOrderHandler(userData) {
+    fetch("https://meals-ecommerce-default-rtdb.firebaseio.com/orders.json", {
+      method: "POST",
+      body: JSON.stringify({ user: userData, items: cartCtx.items }),
+    });
+  }
+
   const cartItems = (
     <ul className={styles["cart-items"]}>
       {cartCtx.items.map((item) => (
@@ -43,7 +50,11 @@ export default function Cart(props) {
       <button className={styles["button--alt"]} onClick={props.onClose}>
         Close
       </button>
-      {hasItems && <button className={styles.button} onClick={orderHandler}>Order</button>}
+      {hasItems && (
+        <button className={styles.button} onClick={orderHandler}>
+          Order
+        </button>
+      )}
     </div>
   );
 
@@ -54,7 +65,9 @@ export default function Cart(props) {
         <span>Total amount</span>
         <span>{totalAmount}</span>
       </div>
-      {isCheckout && <Checkout onCancel={props.onClose} />}
+      {isCheckout && (
+        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
+      )}
       {!isCheckout && modalActions}
     </Modal>
   );
